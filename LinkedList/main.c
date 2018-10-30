@@ -3,10 +3,9 @@
 #include <stdlib.h>
 
 int main() {
-
-    //declare array of nodes:
+    
     node_t *head;
-
+    
     //create nodes:
     node_t *node0 = create1(100);
     node_t *node1 = create1(200);
