@@ -7,7 +7,6 @@
 
 typedef struct data {
     int num;
-
 } data_t;
 
 typedef struct node {
@@ -15,13 +14,25 @@ typedef struct node {
     struct node *next;
 } node_t;
 
+
 node_t *create0();
+
 node_t *create1(int num);
+
 void printNode(node_t *node);
+
 void printNodesFrom(node_t *head);
+
 node_t *insert(node_t *newNode, node_t *head);
+
 void push(node_t *newNode, node_t *head);
+
 node_t *pop(node_t *head);
+
 node_t *reverseList(node_t *head);
+
+void swapNodes(node_t *head, node_t *node1, node_t *node2);
+
+void sortByData(node_t *head);
 
 #endif
