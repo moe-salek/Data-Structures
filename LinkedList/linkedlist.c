@@ -9,33 +9,27 @@
 typedef struct node node_t;
 typedef struct data data_t;
 
-node_t *create0() {
-    node_t *currentNode = NULL;
-    currentNode = malloc(sizeof(node_t));
+node_t *createNode(int value) {
+    node_t *currentNode = malloc(sizeof(node_t));
+    currentNode->data.num = value;
+    currentNode->next = NULL;
     return currentNode;
 }
 
-node_t *create1(int num) {
-    node_t *currentNode = NULL;
-    currentNode = malloc(sizeof(node_t));
-    currentNode->data.num = num;
-    return currentNode;
-}
-
-void printNode(node_t *node) {
-    printf("+ ");
-    printf("data: %d", node->data);
-    printf(", ");
+void showNode(node_t *node) {
+    printf("<node(-)> ");
+    printf("data:%5d , ", node->data);
+    printf("adrs:%p , ", node);
     printf("next: %p", node->next);
     printf("\n");
 }
 
-void printNodesFrom(node_t *node) {
+void showNodesFrom(node_t *node) {
     node_t *current = node;
     int counter = 0;
     while (current != NULL) {
         printf("<node(%d)> ", ++counter);
-        printf("data:%d , ", current->data);
+        printf("data:%5d , ", current->data);
         printf("adrs:%p , ", current);
         printf("next:%p", current->next);
         printf("\n");
@@ -70,10 +64,18 @@ node_t *pop(node_t *head) {
     if (head == NULL) {
         return NULL;
     }
-    head->next = NULL;
-    return head;
+    node_t *popped = createNode(NULL);
+    node_t *prevNode, *current;
+    prevNode = current = head;
+    while (current->next != NULL) {
+        prevNode = current;
+        current = current->next;
+    }
+    popped->data = current->data;
+    prevNode->next = NULL;
+    free(current);
+    return popped;
 }
-
 
 node_t *reverseList(node_t *head) {
     if (head == NULL) {
