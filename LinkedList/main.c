@@ -7,11 +7,11 @@ int main() {
     node_t *head;
 
     //create nodes:
-    node_t *node1 = create1(100);
-    node_t *node2 = create1(200);
-    node_t *node3 = create1(300);
-    node_t *node4 = create1(400);
-    node_t *node5 = create1(500);
+    node_t *node1 = createNode(100);
+    node_t *node2 = createNode(200);
+    node_t *node3 = createNode(300);
+    node_t *node4 = createNode(400);
+    node_t *node5 = createNode(500);
 
     //link them together:
     head = node1;
@@ -21,27 +21,24 @@ int main() {
     node4->next = node5;
     node5->next = NULL;
 
-    //reverse list:
-//    head = reverseList(head);
+    //push to list:
+//    push(head, createNode(2));
 
-    //insert to top of the list:
-//    node_t *newNode1 = create1(1);
+//    pop from list:
+//    node_t *popped = pop(head);
+
+    //insert to bottom of the list:
+//    node_t *newNode1 = createNode(1);
 //    head = insert(head, newNode1);
-
-    //push to bottom of the list:
-//    node_t *newNode2 = create1(2);
-//    push(head, newNode2);
-
-    //pop from the top of the list:
-//    node_t *newHead = head->next;
-//    node_t *poppedVar = pop(head);
-//    head = newHead;
 
     //swap two nodes in the list:
 //    swapNodes(head, node4, node2);
 
+    //reverse list:
+//    head = reverseList(head);
+
     //print the list:
-    printNodesFrom(head);
+    showNodesFrom(head);
 
     return 0;
 }
