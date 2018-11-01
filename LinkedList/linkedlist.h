@@ -1,7 +1,6 @@
 //
 // Created by Mohammad Salek
 //
-
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -30,6 +29,8 @@ node_t *reverseList(node_t *head);
 
 void swapNodes(node_t *head, node_t *node1, node_t *node2);
 
-void sortByData(node_t *head);
+void sortByDataNum(node_t *head);
+
+int sizeOfList(node_t *head);
 
 #endif
