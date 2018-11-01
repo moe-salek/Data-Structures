@@ -21,6 +21,19 @@ int main() {
     node4->next = node5;
     node5->next = NULL;
 
+    //create array of nodes with random data:
+    /*
+    srand(NULL);
+    node_t *array[1000];
+    for (int i = 0; i < 1000; ++i) {
+        array[i] = createNode(rand() % 1000 + 1000);
+    }
+    for (int i = 1; i < 1000; ++i) {
+        array[i-1]->next = array[i];
+    }
+    head = array[0];
+    */
+
     //push to list:
 //    push(head, createNode(2));
 
@@ -34,8 +47,14 @@ int main() {
     //swap two nodes in the list:
 //    swapNodes(head, node4, node2);
 
+    //size of list:
+//    printf("%d", sizeOfList(head));
+
     //reverse list:
 //    head = reverseList(head);
+
+    //sort list:
+//    sortByDataNum(head);
 
     //print the list:
     showNodesFrom(head);
