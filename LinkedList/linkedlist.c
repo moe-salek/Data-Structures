@@ -18,7 +18,7 @@ node_t *createNode(int value) {
 
 void showNode(node_t *node) {
     printf("<node(-)> ");
-    printf("data:%5d , ", node->data);
+    printf("data:%d , ", node->data);
     printf("adrs:%p , ", node);
     printf("next: %p", node->next);
     printf("\n");
@@ -29,7 +29,7 @@ void showNodesFrom(node_t *node) {
     int counter = 0;
     while (current != NULL) {
         printf("<node(%d)> ", ++counter);
-        printf("data:%5d , ", current->data);
+        printf("data:%d , ", current->data);
         printf("adrs:%p , ", current);
         printf("next:%p", current->next);
         printf("\n");
@@ -90,7 +90,7 @@ node_t *reverseList(node_t *head) {
     return tmpNode2;
 }
 
-//Warning: update head if swapping head with other nodes
+//WARNING: update head if swapping head with other nodes
 void swapNodes(node_t *head, node_t *node1, node_t *node2) {
     if (head != NULL && node1 != NULL && node2 != NULL) {
         node_t *current = head, *prevNode;
@@ -131,6 +131,35 @@ void swapNodes(node_t *head, node_t *node1, node_t *node2) {
     }
 }
 
-void sortByData(node_t *head) {
-    //TODO
+void sortByDataNum(node_t *head) {
+    if (head != NULL) {
+        int size = sizeOfList(head);
+        node_t *current, *prevNode;
+        while (size) {
+            current = prevNode = head;
+            while (current != NULL) {
+                if (prevNode->data.num > current->data.num) {
+                    int tmp = prevNode->data.num;
+                    prevNode->data.num = current->data.num;
+                    current->data.num = tmp;
+                }
+                prevNode = current;
+                current = current->next;
+            }
+            --size;
+        }
+    }
+}
+
+int sizeOfList(node_t *head) {
+    int counter = 0;
+    node_t *current = head;
+    if (current != NULL) {
+        ++counter;
+        while (current->next != NULL) {
+            ++counter;
+            current = current->next;
+        }
+    }
+    return counter;
 }
