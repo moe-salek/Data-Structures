@@ -14,18 +14,15 @@ typedef struct node {
     struct node *next;
 } node_t;
 
+node_t *createNode(int value);
 
-node_t *create0();
+void showNode(node_t *node);
 
-node_t *create1(int num);
+void showNodesFrom(node_t *head);
 
-void printNode(node_t *node);
+node_t *insert(node_t *head, node_t *newNode);
 
-void printNodesFrom(node_t *head);
-
-node_t *insert(node_t *newNode, node_t *head);
-
-void push(node_t *newNode, node_t *head);
+void push(node_t *head, node_t *newNode);
 
 node_t *pop(node_t *head);
 
