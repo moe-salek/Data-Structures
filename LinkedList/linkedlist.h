@@ -27,9 +27,9 @@ node_t *pop(node_t *head);
 
 node_t *reverseList(node_t *head);
 
-void swapNodes(node_t *head, node_t *node1, node_t *node2);
+node_t *swapNodes(node_t *head, node_t *node1, node_t *node2);
 
-void sortByDataNum(node_t *head);
+node_t *sortByDataNum(node_t *head);
 
 int sizeOfList(node_t *head);
 
