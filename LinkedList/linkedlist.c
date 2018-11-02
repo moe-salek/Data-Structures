@@ -91,8 +91,16 @@ node_t *reverseList(node_t *head) {
 }
 
 //WARNING: update head if swapping head with other nodes
-void swapNodes(node_t *head, node_t *node1, node_t *node2) {
+node_t *swapNodes(node_t *head, node_t *node1, node_t *node2) {
     if (head != NULL && node1 != NULL && node2 != NULL) {
+        node_t *newHead;
+        if (node1 == head) {
+            newHead = node2;
+        } else if (node2 == head) {
+            newHead = node1;
+        } else {
+            newHead = head;
+        }
         node_t *current = head, *prevNode;
         node_t *prevNode1, *prevNode2;
         prevNode = prevNode1 = prevNode2  = NULL;
@@ -105,7 +113,6 @@ void swapNodes(node_t *head, node_t *node1, node_t *node2) {
             prevNode = current;
             current = current->next;
         }
-
         node_t *tmp;
         if (prevNode1 == node2) {  //checks if node1 is before node2 or vice versa
             if (prevNode2 != NULL)
@@ -128,27 +135,29 @@ void swapNodes(node_t *head, node_t *node1, node_t *node2) {
             node2->next = node1->next;
             node1->next = tmp;
         }
+        return newHead;
     }
+    return NULL;
 }
 
-void sortByDataNum(node_t *head) {
+node_t *sortByDataNum(node_t *head) {
     if (head != NULL) {
         int size = sizeOfList(head);
-        node_t *current, *prevNode;
+        node_t *current, *prevNode, *newHead = head;
         while (size) {
-            current = prevNode = head;
+            current = prevNode = newHead;
             while (current != NULL) {
                 if (prevNode->data.num > current->data.num) {
-                    int tmp = prevNode->data.num;
-                    prevNode->data.num = current->data.num;
-                    current->data.num = tmp;
+                    newHead = swapNodes(newHead, prevNode, current);
                 }
                 prevNode = current;
                 current = current->next;
             }
             --size;
         }
+        return newHead;
     }
+    return NULL;
 }
 
 int sizeOfList(node_t *head) {
