@@ -90,7 +90,6 @@ node_t *reverseList(node_t *head) {
     return tmpNode2;
 }
 
-//WARNING: update head if swapping head with other nodes
 node_t *swapNodes(node_t *head, node_t *node1, node_t *node2) {
     if (head != NULL && node1 != NULL && node2 != NULL) {
         node_t *newHead;
