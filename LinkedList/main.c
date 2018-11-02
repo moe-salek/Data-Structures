@@ -45,7 +45,7 @@ int main() {
 //    head = insert(head, newNode1);
 
     //swap two nodes in the list:
-//    swapNodes(head, node4, node2);
+//    head = swapNodes(head, node2, node5);
 
     //size of list:
 //    printf("%d", sizeOfList(head));
@@ -54,7 +54,7 @@ int main() {
 //    head = reverseList(head);
 
     //sort list:
-//    sortByDataNum(head);
+//    head = sortByDataNum(head);
 
     //print the list:
     showNodesFrom(head);
