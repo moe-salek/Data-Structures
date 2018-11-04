@@ -10,17 +10,17 @@ typedef struct node node_t;
 typedef struct data data_t;
 
 node_t *createNode(int value) {
-    node_t *currentNode = malloc(sizeof(node_t));
-    currentNode->data.num = value;
-    currentNode->next = NULL;
-    return currentNode;
+    node_t *newNode = malloc(sizeof(node_t));
+    newNode->data.num = value;
+    newNode->next = NULL;
+    return newNode;
 }
 
 void showNode(node_t *node) {
     printf("<node(-)> ");
     printf("data:%d , ", node->data);
     printf("adrs:%p , ", node);
-    printf("next: %p", node->next);
+    printf("next:%p", node->next);
     printf("\n");
 }
 
@@ -37,12 +37,12 @@ void showNodesFrom(node_t *node) {
     }
 }
 
-node_t *insert(node_t *head, node_t *newNode) {
+void insert(node_t **head, node_t *newNode) {
     if (newNode == NULL) {
-        return NULL;
+        return;
     }
-    newNode->next = head;
-    return newNode;
+    newNode->next = *head;
+    *head = newNode;
 }
 
 void push(node_t *head, node_t *newNode) {
@@ -56,29 +56,28 @@ void push(node_t *head, node_t *newNode) {
     }
 }
 
-node_t *pop(node_t *head) {
+int pop(node_t *head) {
     if (head == NULL) {
-        return NULL;
+        return -1;
     }
-    node_t *popped = createNode(NULL);
     node_t *prevNode, *current;
     prevNode = current = head;
     while (current->next != NULL) {
         prevNode = current;
         current = current->next;
     }
-    popped->data = current->data;
-    prevNode->next = NULL;
+    int value = current->data.num;
     free(current);
-    return popped;
+    prevNode->next = NULL;
+    return value;
 }
 
-node_t *reverseList(node_t *head) {
+void reverseList(node_t **head) {
     if (head == NULL) {
-        return NULL;
+        return;
     }
     node_t *tmpNode1 = NULL;
-    node_t *tmpNode2 = head;
+    node_t *tmpNode2 = *head;
     node_t *tmpNode3 = tmpNode2->next;
     tmpNode2->next = tmpNode1;
     while (tmpNode3 != NULL) {
@@ -87,22 +86,20 @@ node_t *reverseList(node_t *head) {
         tmpNode3 = tmpNode2->next;
         tmpNode2->next = tmpNode1;
     }
-    return tmpNode2;
+    *head = tmpNode2;
 }
 
-node_t *swapNodes(node_t *head, node_t *node1, node_t *node2) {
-    if (head != NULL && node1 != NULL && node2 != NULL) {
-        node_t *newHead;
-        if (node1 == head) {
+void swapNodes(node_t **head, node_t *node1, node_t *node2) {
+    if (*head != NULL && node1 != NULL && node2 != NULL) {
+        node_t *newHead, *current = *head, *prevNode, *prevNode1, *prevNode2;
+        prevNode = prevNode1 = prevNode2  = NULL;
+        if (node1 == *head) {
             newHead = node2;
-        } else if (node2 == head) {
+        } else if (node2 == *head) {
             newHead = node1;
         } else {
-            newHead = head;
+            newHead = *head;
         }
-        node_t *current = head, *prevNode;
-        node_t *prevNode1, *prevNode2;
-        prevNode = prevNode1 = prevNode2  = NULL;
         while (current != NULL) {
             if (current == node1) {
                 prevNode1 = prevNode;
@@ -134,29 +131,29 @@ node_t *swapNodes(node_t *head, node_t *node1, node_t *node2) {
             node2->next = node1->next;
             node1->next = tmp;
         }
-        return newHead;
+        *head = newHead;
+        return;
     }
-    return NULL;
 }
 
-node_t *sortByDataNum(node_t *head) {
-    if (head != NULL) {
-        int size = sizeOfList(head);
-        node_t *current, *prevNode, *newHead = head;
+void sortByDataNum(node_t **head) {
+    if (*head != NULL) {
+        int size = sizeOfList(*head);
+        node_t *current, *prevNode, *newHead = *head;
         while (size) {
             current = prevNode = newHead;
             while (current != NULL) {
                 if (prevNode->data.num > current->data.num) {
-                    newHead = swapNodes(newHead, prevNode, current);
+                    swapNodes(&newHead, prevNode, current);
                 }
                 prevNode = current;
                 current = current->next;
             }
             --size;
         }
-        return newHead;
+        *head = newHead;
+        return;
     }
-    return NULL;
 }
 
 int sizeOfList(node_t *head) {
@@ -170,4 +167,27 @@ int sizeOfList(node_t *head) {
         }
     }
     return counter;
+}
+
+void addNodeAfter(node_t *prevNode, node_t *newNode) {
+    if (prevNode != NULL) {
+        node_t *afterNode = prevNode->next;
+        prevNode->next = newNode;
+        newNode->next = afterNode;
+    }
+}
+
+void addNodeBefore(node_t **head, node_t *afterNode, node_t *newNode) {
+    if (afterNode == *head)
+        insert(head, newNode);
+    node_t *current = *head;
+    while (current != NULL) {
+        if (current->next == afterNode)
+            break;
+        current = current->next;
+    }
+    if (current != NULL) {
+        current->next = newNode;
+        newNode->next = afterNode;
+    }
 }
