@@ -38,23 +38,28 @@ int main() {
 //    push(head, createNode(2));
 
 //    pop from list:
-//    node_t *popped = pop(head);
+//    int popped = pop(head);
 
     //insert to bottom of the list:
-//    node_t *newNode1 = createNode(1);
-//    head = insert(head, newNode1);
+//    insert(&head, createNode(987));
 
     //swap two nodes in the list:
-//    head = swapNodes(head, node2, node5);
+//    swapNodes(&head, node2, node3);
+
+    //add after a node:
+//    addNodeAfter(node2, createNode(900));
+
+    //add before a node:
+//    addNodeBefore(&head, node3, createNode(842));
 
     //size of list:
 //    printf("%d", sizeOfList(head));
 
-    //reverse list:
-//    head = reverseList(head);
+//    reverse list:
+//    reverseList(&head);
 
     //sort list:
-//    head = sortByDataNum(head);
+//    sortByDataNum(&head);
 
     //print the list:
     showNodesFrom(head);
