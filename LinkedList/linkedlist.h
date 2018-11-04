@@ -19,18 +19,22 @@ void showNode(node_t *node);
 
 void showNodesFrom(node_t *head);
 
-node_t *insert(node_t *head, node_t *newNode);
+void insert(node_t **head, node_t *newNode);
 
 void push(node_t *head, node_t *newNode);
 
-node_t *pop(node_t *head);
+int pop(node_t *head);
 
-node_t *reverseList(node_t *head);
+void reverseList(node_t **head);
 
-node_t *swapNodes(node_t *head, node_t *node1, node_t *node2);
+void swapNodes(node_t **head, node_t *node1, node_t *node2);
 
-node_t *sortByDataNum(node_t *head);
+void sortByDataNum(node_t **head);
 
 int sizeOfList(node_t *head);
+
+void addNodeAfter(node_t *prevNode, node_t *newNode);
+
+void addNodeBefore(node_t **head, node_t *afterNode, node_t *newNode);
 
 #endif
