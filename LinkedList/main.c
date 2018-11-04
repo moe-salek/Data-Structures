@@ -37,7 +37,7 @@ int main() {
     //push to list:
 //    push(head, createNode(2));
 
-//    pop from list:
+    //pop from list:
 //    int popped = pop(head);
 
     //insert to bottom of the list:
@@ -55,7 +55,7 @@ int main() {
     //size of list:
 //    printf("%d", sizeOfList(head));
 
-//    reverse list:
+    //reverse list:
 //    reverseList(&head);
 
     //sort list:
