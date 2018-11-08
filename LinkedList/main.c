@@ -1,6 +1,4 @@
 #include "linkedlist.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int main() {
 
@@ -51,6 +49,12 @@ int main() {
 
     //add before a node:
 //    addNodeBefore(&head, node3, createNode(842));
+
+    //remove a node by address:
+//    removeNode(&head, node3);
+
+    //remove a node by data:
+//    removeNodeByData(&head, createData(200));
 
     //size of list:
 //    printf("%d", sizeOfList(head));
