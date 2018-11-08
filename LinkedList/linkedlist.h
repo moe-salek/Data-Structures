@@ -47,4 +47,8 @@ void removeNode(node_t **head, node_t *selected);
 
 void removeNodeByData(node_t **head, data_t *theData);
 
+node_t *nodeByIndex(node_t *head, int index);
+
+void shuffle (node_t **head);
+
 #endif
