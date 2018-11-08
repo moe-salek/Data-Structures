@@ -2,6 +2,7 @@
 
 int main() {
 
+    //create head of the list:
     node_t *head;
 
     //create nodes:
@@ -21,7 +22,7 @@ int main() {
 
     //create array of nodes with random data:
     /*
-    srand(NULL);
+    srand((unsigned int) time(NULL));
     node_t *array[1000];
     for (int i = 0; i < 1000; ++i) {
         array[i] = createNode(rand() % 1000 + 1000);
@@ -64,6 +65,12 @@ int main() {
 
     //sort list:
 //    sortByDataNum(&head);
+
+    //get pointer to a node by its index starting from head (index = 0):
+//    showNode(nodeByIndex(head, 0));
+
+    //shuffle the list:
+//    shuffle(&head);
 
     //print the list:
     showNodesFrom(head);
