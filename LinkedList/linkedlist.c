@@ -1,5 +1,5 @@
 //
-// Created by Mohammad Salek
+// Created by Mohammad Salek.
 //
 
 #include "linkedlist.h"
@@ -9,9 +9,15 @@
 typedef struct node node_t;
 typedef struct data data_t;
 
-node_t *createNode(int value) {
+data_t *createData(size_t value) {
+    data_t *newData = malloc(sizeof(data_t));
+    newData->num = (int) value;
+    return newData;
+}
+
+node_t *createNode(size_t value) {
     node_t *newNode = malloc(sizeof(node_t));
-    newNode->data.num = value;
+    newNode->data.num = (int) value;
     newNode->next = NULL;
     return newNode;
 }
@@ -189,5 +195,47 @@ void addNodeBefore(node_t **head, node_t *afterNode, node_t *newNode) {
     if (current != NULL) {
         current->next = newNode;
         newNode->next = afterNode;
+    }
+}
+
+void removeNode(node_t **head, node_t *selected) {
+    if (*head != NULL) {
+        if (*head == selected) {
+            node_t *tmp = *head;
+            *head = (*head)->next;
+            free(tmp);
+        } else {
+            node_t *prev, *current = *head;
+            while (current != NULL && current != selected) {
+                prev = current;
+                current = current->next;
+            }
+            if (current != NULL)
+                prev->next = current->next;
+            else
+                prev->next = NULL;
+            free(current);
+        }
+    }
+}
+
+void removeNodeByData(node_t **head, data_t *theData) {
+    if (*head != NULL) {
+        if ((*head)->data.num == theData->num) {
+            node_t *tmp = *head;
+            *head = (*head)->next;
+            free(tmp);
+        } else {
+            node_t *prev, *current = *head;
+            while (current != NULL && current->data.num != theData->num) {
+                prev = current;
+                current = current->next;
+            }
+            if (current != NULL)
+                prev->next = current->next;
+            else
+                prev->next = NULL;
+            free(current);
+        }
     }
 }
