@@ -1,6 +1,9 @@
 //
-// Created by Mohammad Salek
+// Created by Mohammad Salek.
 //
+
+#include <stdlib.h>
+#include <stdio.h>
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
@@ -14,7 +17,9 @@ typedef struct node {
     struct node *next;
 } node_t;
 
-node_t *createNode(int value);
+data_t *createData(size_t value);
+
+node_t *createNode(size_t value);
 
 void showNode(node_t *node);
 
@@ -37,5 +42,9 @@ int sizeOfList(node_t *head);
 void addNodeAfter(node_t *prevNode, node_t *newNode);
 
 void addNodeBefore(node_t **head, node_t *afterNode, node_t *newNode);
+
+void removeNode(node_t **head, node_t *selected);
+
+void removeNodeByData(node_t **head, data_t *theData);
 
 #endif
