@@ -8,17 +8,10 @@
 #include <time.h>
 
 typedef struct node node_t;
-typedef struct data data_t;
 
-data_t *createData(size_t value) {
-    data_t *newData = malloc(sizeof(data_t));
-    newData->num = (int) value;
-    return newData;
-}
-
-node_t *createNode(size_t value) {
+node_t *createNode(int data) {
     node_t *newNode = malloc(sizeof(node_t));
-    newNode->data.num = (int) value;
+    newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
@@ -71,7 +64,7 @@ int pop(node_t *head) {
         prevNode = current;
         current = current->next;
     }
-    int value = current->data.num;
+    int value = current->data;
     free(current);
     prevNode->next = NULL;
     return value;
@@ -139,7 +132,7 @@ void swapNodes(node_t **head, node_t *node1, node_t *node2) {
     *head = newHead;
 }
 
-void sortByDataNum(node_t **head) {
+void sortByData(node_t **head) {
     if (*head == NULL)
         return;
     int size = sizeOfList(*head);
@@ -147,7 +140,7 @@ void sortByDataNum(node_t **head) {
     while (size) {
         current = prevNode = newHead;
         while (current != NULL) {
-            if (prevNode->data.num > current->data.num) {
+            if (prevNode->data > current->data) {
                 swapNodes(&newHead, prevNode, current);
             }
             prevNode = current;
@@ -215,16 +208,16 @@ void removeNode(node_t **head, node_t *selected) {
     }
 }
 
-void removeNodeByData(node_t **head, data_t *theData) {
-    if (*head == NULL || theData == NULL)
+void removeNodeByData(node_t **head, int data) {
+    if (*head == NULL || data == NULL)
         return;
-    if ((*head)->data.num == theData->num) {
+    if ((*head)->data == data) {
         node_t *tmp = *head;
         *head = (*head)->next;
         free(tmp);
     } else {
         node_t *prev, *current = *head;
-        while (current != NULL && current->data.num != theData->num) {
+        while (current != NULL && current->data != data) {
             prev = current;
             current = current->next;
         }
