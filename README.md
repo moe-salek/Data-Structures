@@ -1,3 +1,3 @@
 # Data Structures
 
-my codes for the "Data Structures and Algorithms" course and also my personal projects related to the topic.
+My codes for "Data Structures and Algorithms" course + projects related to that topic.
