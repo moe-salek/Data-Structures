@@ -12,15 +12,26 @@ node_t *createNode(int item) {
     return newNode;
 }
 
-int addNode(node_t *node, node_t *newNode, char side) {
-    if (node == NULL || (side != 'L' && side != 'R'))
-        return -1;
-    if (side == 'L') {
-        node->left = newNode;
-    } else {
-        node->right = newNode;
+node_t *createLevelTree(int array[], int size) {
+    queue_t *queue = createNewQueue(size);
+    queue_t *queue2 = createNewQueue(size);
+    node_t *root = NULL, *node = NULL;
+    for (int i = 0; i < size; ++i) {
+        node = createNode(array[i]);
+        enqueue(queue, node);
+        enqueue(queue2, node);
     }
-    return 0;
+    dequeue(queue2);
+    while (queue->size != 0) {
+        node = dequeue(queue);
+        if (queue->front == 1)
+            root = node;
+        if (queue2->size != 0)
+            node->left = dequeue(queue2);
+        if (queue2->size != 0)
+            node->right = dequeue(queue2);
+    }
+    return root;
 }
 
 int findHeight(node_t *root) {

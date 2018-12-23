@@ -144,3 +144,44 @@ node_t *minSubtreeNode(node_t *node) {
     }
     return current;
 }
+
+int isBST(node_t *node) {
+    if (node == NULL) {
+        return 1;
+    } else {
+        if (node->left != NULL && node->right != NULL) {
+            if ((isBST(node->left) && (node->left->item < node->item)) &&
+                (isBST(node->right) && (node->right->item > node->item)))
+                return 1;
+            else
+                return 0;
+        } else if (node->left != NULL) {
+            if ((isBST(node->left) && (node->left->item < node->item)) &&
+                (isBST(node->right)))
+                return 1;
+            else
+                return 0;
+        } else if (node->right != NULL) {
+            if ((isBST(node->left)) &&
+                (isBST(node->right) && (node->right->item > node->item)))
+                return 1;
+            else
+                return 0;
+        } else {
+            if (isBST(node->left) &&
+                isBST(node->right))
+                return 1;
+            else
+                return 0;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

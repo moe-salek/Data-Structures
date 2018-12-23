@@ -23,7 +23,7 @@ typedef struct Node {
 #include <time.h>
 
 node_t *createNode(int item);
-int addNode(node_t *root, node_t *newNode, char side);
+node_t *createLevelTree(int array[], int size);
 int findHeight(node_t *root);
 int printNode(node_t *node);
 int printItem(node_t *root);

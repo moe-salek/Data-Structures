@@ -6,12 +6,25 @@
 
 int main() {
 
-    /* Array of Items: */
-    int array[] = { 40, 20, 10, 30 , 50 };
+    /* Arrays of Items: */
+    int array[] = { 40, 20, 10, 30 , 50 }; // For BST Construction
+    int array2[] = {1, 2, 3, 4, 5, 6}; // For Tree Construction
 
-    /* Choose order: */
-    node_t *root = createBST_preOrder(array, 5); /* First Root */
-    // node_t *root = createBST_postOrder(array, 5); /* Last Root */
+    /* Construct Tree: */
+    node_t *root2 = createLevelTree(array2, 6);
+
+    /*
+    *       1
+    *      /  \
+    *     2    3
+    *    / \  /
+    *   4   5 6
+    *
+    */
+
+    /* Construct BST: */
+    node_t *root = createBST_preOrder(array, 5); /* First Item is Root */
+    // node_t *root = createBST_postOrder(array, 5); /* Last Item is Root */
 
     /*      40
     *      /  \
@@ -48,9 +61,30 @@ int main() {
     printf("\n\n");
 
     /* Layers: */
-    //("<< Layers >>\n");
-    //printLayers(root, 5);
-    //printf("\n");
+    printf("<< Layers >>\n");
+    printf("<root>\n");
+    printLayers(root, 5);
+    printf("\n");
+    printf("<root2>\n");
+    printLayers(root2, 6);
+    printf("\n");
+
+    /* Check BST: */
+    printf("<< Check BST >>\n");
+    printf("\"root\"");
+    if (isBST(root)) {
+        printf(" IS BST!");
+    } else {
+        printf(" is NOT BST!");
+    }
+    printf("\n");
+    printf("\"root2\"");
+    if (isBST(root2)) {
+        printf(" IS BST!");
+    } else {
+        printf(" is NOT BST!");
+    }
+    printf("\n\n");
 
     return 0;
 }

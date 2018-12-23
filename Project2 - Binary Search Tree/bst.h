@@ -14,5 +14,6 @@ node_t *searchParentInBST(node_t *root, int item);
 void addToBST(node_t *root, int item);
 void deleteFromBST(node_t *root, int item);
 node_t *minSubtreeNode(node_t *node);
+int isBST(node_t *node);
 
 #endif //MINIPROJECT2_BST_H

@@ -23,7 +23,7 @@ typedef struct Queue {
     int capacity;
     int size;
     int front, rear;
-    node_t *nodeArray;
+    node_t **nodeArray;
 } queue_t;
 
 queue_t *createNewQueue(int capacity);

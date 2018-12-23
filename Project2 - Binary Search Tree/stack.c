@@ -9,13 +9,13 @@ stack_t *createNewStack(int capacity) {
     stack = malloc(sizeof(stack_t));
     stack->capacity = capacity;
     stack->size = 0;
-    stack->nodeArray = (node_t *)malloc(capacity * sizeof(node_t));
+    stack->nodeArray = (node_t **)malloc(capacity * sizeof(node_t *));
     return stack;
 }
 
 void push(stack_t *stack, node_t *node) {
     if(stack->size < stack->capacity) {
-        stack->nodeArray[stack->size++] = *node;
+        stack->nodeArray[stack->size++] = node;
     } else {
         printf("Full Stack! (push)\n");
     }
@@ -26,7 +26,7 @@ node_t *pop(stack_t *stack) {
         printf("Empty Stack! (pop)\n");
         return NULL;
     }
-    return &stack->nodeArray[--stack->size];
+    return stack->nodeArray[--stack->size];
 }
 
 void printStack(stack_t *stack) {
@@ -44,9 +44,9 @@ void printStack(stack_t *stack) {
         printf("[ ");
         for(int i = 0; i < stack->size; ++i) {
             if(i != stack->size - 1)
-                printf("%d, ", stack->nodeArray[i].item);
+                printf("%d, ", stack->nodeArray[i]->item);
             else
-                printf("%d", stack->nodeArray[i].item);
+                printf("%d", stack->nodeArray[i]->item);
         }
         printf(" ]\n");
     }

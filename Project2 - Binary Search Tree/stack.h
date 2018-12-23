@@ -22,7 +22,7 @@ typedef struct Node {
 typedef struct Stack {
     int capacity;
     int size;
-    node_t *nodeArray;
+    node_t **nodeArray;
 } stack_t;
 
 stack_t *createNewStack(int capacity);

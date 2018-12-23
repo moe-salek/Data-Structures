@@ -10,7 +10,7 @@ queue_t *createNewQueue(int capacity) {
     queue->size = 0;
     queue->front = -1;
     queue->rear = -1;
-    queue->nodeArray = (node_t *)malloc(capacity * sizeof(node_t));
+    queue->nodeArray = (node_t **)malloc(capacity * sizeof(node_t *));
 }
 
 int enqueue(queue_t *queue, node_t *item) {
@@ -22,7 +22,7 @@ int enqueue(queue_t *queue, node_t *item) {
         printf("Full Queue! (enqueue)\n");
         return -1;
     }
-    queue->nodeArray[++queue->rear] = *item;
+    queue->nodeArray[++queue->rear] = item;
     if (queue->front < 0)
         queue->front = 0;
     queue->size++;
@@ -39,7 +39,7 @@ node_t *dequeue(queue_t *queue) {
         return NULL;
     }
     queue->size--;
-    return &queue->nodeArray[queue->front++];
+    return queue->nodeArray[queue->front++];
 }
 
 void printQueue(queue_t *queue) {
@@ -57,9 +57,9 @@ void printQueue(queue_t *queue) {
         printf("[ ");
         for (int i = queue->front; i <= queue->rear; ++i) {
             if (i != queue->rear)
-                printf("%d, ", queue->nodeArray[i].item);
+                printf("%d, ", queue->nodeArray[i]->item);
             else
-                printf("%d", queue->nodeArray[i].item);
+                printf("%d", queue->nodeArray[i]->item);
         }
         printf(" ]\n");
     }
